@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import Nav from "./Nav";
+import ItemPage from "./ItemPage";
+import { items } from "./static-data";
 
-function App() {
+const App = () => {
+  const [activeTab, setActiveTab] = useState("items");
+  const [cart, setCart] = useState([]);
+  const addToCart = (item) => {
+    setCart((prevCart) => [...prevCart, item]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div>{this.state.cart.length} items</div>
+      <Nav activeTab={activeTab} onTabChange={setActiveTab} />
+      <main className='App-content'>
+        <Content tab={activeTab} onAddToCart={addToCart} />
+      </main>
     </div>
   );
-}
+};
+
+const Content = ({ tab, onAddToCart }) => {
+  switch (tab) {
+    default:
+    case "items":
+      return <ItemPage items={items} onAddToCart={onAddToCart} />;
+    case "cart":
+      return <span>the cart</span>;
+  }
+};
 
 export default App;
