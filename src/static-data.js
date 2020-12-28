@@ -3,6 +3,7 @@ let items = [
     id: 0,
     name: "Apple iPad",
     description: "An iPad like no other. WiFi , 4G, lots of storage",
+    price: 329.0,
   },
   {
     id: 1,
